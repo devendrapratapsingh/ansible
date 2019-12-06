@@ -1,0 +1,8 @@
+---
+# handlers file for roles/ansible_role_nginx
+- name: "enable and start the nginx"
+  service:
+      name: nginx
+      enabled: yes
+      state: restarted
+  become: true

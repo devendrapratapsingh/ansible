@@ -1,0 +1,23 @@
+---
+# tasks file for roles/ansible_role_demo
+- name: ping the group server
+  ping:
+
+- name: print the default value  vars
+  debug:  
+    var: default_text
+
+- name: print the defined variable in  vars
+  debug:  
+    var: type
+
+- name: print the server group variable 
+  debug:  
+    var: _groupname
+  when:  _groupname is defined    
+
+- name: print the host variable 
+  debug:  
+    var: _hostname
+  when:  _hostname is defined  
+

@@ -1,0 +1,32 @@
+---
+all:
+   hosts:
+     local:
+         ansible_host: localhost
+     _local:
+         ansible_host: 127.0.0.1
+     http:
+         ansible_host: 192.168.10.25      
+   children:
+      local_group:
+        hosts: 
+            local:
+
+      local_group2:
+        hosts: 
+            _local:
+      local_target_group:
+        children:
+           local_group:
+           local_group2:
+        vars:
+            ansible_username: root
+            ansible_connection: local
+      nginx:
+          hosts:
+              http:
+          vars:
+              ansible_username: local
+              ansible_ssh_private_key_file: ~/.ssh/subsystem_centos7
+   
+         

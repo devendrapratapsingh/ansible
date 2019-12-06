@@ -1,0 +1,11 @@
+- name: ansible demo
+  hosts: local_group,local_group2
+  gather_facts: true
+  roles:
+     - ansible_role_demo
+
+- name: ansible nginx demo
+  hosts: nginx
+  gather_facts: true
+  roles:
+     - ansible_role_nginx 

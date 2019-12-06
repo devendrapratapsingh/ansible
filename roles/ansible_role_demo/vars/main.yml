@@ -1,0 +1,3 @@
+---
+# vars file for roles/ansible_role_demo
+type: "value from vars"

@@ -1,0 +1,33 @@
+---
+# tasks file for roles/ansible_role_apache
+- name: install any pkg using yum
+  yum:
+     name: nginx
+     state: latest
+  become: yes 
+
+- name: remove commented line  
+  lineinfile:
+      path: "{{ role_path }}/templates/{{ item }}.j2"
+      state: absent
+      regexp: "#.*"
+  with_items:
+    - nginx.conf
+  delegate_to: localhost
+
+
+- name: install nginx conf
+  template:
+     src: nginx.conf.j2
+     dest: /etc/nginx/nginx.conf 
+  notify: 
+    - "enable and start the nginx"
+  become: yes 
+
+- name: smoke test nginx
+  uri:
+    url: "http://{{ansible_host}}"
+  register: this
+  failed_when: 200 != this.status
+
+  
