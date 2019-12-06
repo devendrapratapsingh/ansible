@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: root
+  connection: local
   roles:
-    - roles/ansible_role_demo
+    - "roles/ansible_role_demo"
